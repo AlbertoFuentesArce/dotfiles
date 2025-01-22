@@ -30,6 +30,7 @@ return {
 				"html",
 				"lua_ls",
 				"pyright",
+				"lemminx",
 			},
 		})
 
@@ -41,6 +42,7 @@ return {
 				"black", -- python formatter
 				"flake8",
 				"pylint",
+				"xmlformatter",
 			},
 		})
 	end,
