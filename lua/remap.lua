@@ -41,3 +41,26 @@ vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current t
 vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+-- Copilot inline suggestion keymaps
+
+vim.keymap.set("i", "<Tab>", function()
+	local copilot = require("copilot.suggestion")
+	if copilot.is_visible() then
+		copilot.accept()
+	else
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", true)
+	end
+end, { desc = "Copilot Accept", silent = true })
+
+vim.keymap.set("i", "<M-]>", function()
+	require("copilot.suggestion").next()
+end, { desc = "Copilot Next Suggestion" })
+
+vim.keymap.set("i", "<M-[>", function()
+	require("copilot.suggestion").prev()
+end, { desc = "Copilot Previous Suggestion" })
+
+vim.keymap.set("i", "<C-]>", function()
+	require("copilot.suggestion").dismiss()
+end, { desc = "Copilot Dismiss Suggestion" })
